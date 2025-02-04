@@ -37,28 +37,22 @@
     <div id="results" class="container mx-auto p-8"></div>
 
     <script>
-       
-
         const loader = document.getElementById('loader');
-        
 
         loader.style.display = 'block';
         fetch('https://hello.nocodb.workers.dev/')
             .then(response => response.json())
-            .then(response => {
-                const data = response.list;
+            .then(data => {
                 let cards = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">';
 
                 data.forEach(item => {
-                    const thumbnailUrl = item.Image && item.Image.length > 0 ? 
-                        item.Image[0].thumbnails.card_cover.signedUrl : '';
                     cards += `
                         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="${thumbnailUrl}" alt="${item.Title}" class="w-full h-48 object-cover">
+                            <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-48 object-cover">
                             <div class="p-6">
-                                <h2 class="text-xl font-bold mb-2">${item.Title}</h2>
-                                <p class="text-gray-600">${item.Description || 'No description available'}</p>
-                                <button onclick="goToLessons('${item.viewId}', '${item.Title}', '${item.Description || ''}', '${thumbnailUrl}')" class="mt-4 inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300">
+                                <h2 class="text-xl font-bold mb-2">${item.title}</h2>
+                                <p class="text-gray-600">${item.description || 'No description available'}</p>
+                                <button onclick="goToLessons('${item.viewId}', '${item.title}', '${item.description || ''}', '${item.imageUrl}')" class="mt-4 inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300">
                                     See Lessons
                                 </button>
                             </div>
