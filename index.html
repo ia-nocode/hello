@@ -29,12 +29,7 @@
             100% { left: 100%; }
         }
     </style>
-    <script>
-        // Add this at the beginning
-        if (!sessionStorage.getItem('authToken')) {
-            window.location.href = '/dev/nocodb/';
-        }
-    </script>
+    
 </head>
 <body class="bg-gray-100">
     <div id="global-menu"></div>
@@ -42,16 +37,7 @@
     <div id="results" class="container mx-auto p-8"></div>
 
     <script>
-        function goToLessons(viewId, title, description, imageUrl) {
-            const courseData = {
-                viewId: viewId,
-                title: title,
-                description: description,
-                image: imageUrl
-            };
-            localStorage.setItem('courseData', JSON.stringify(courseData));
-            window.location.href = '../lessons';
-        }
+       
 
         const loader = document.getElementById('loader');
         
@@ -90,6 +76,6 @@
                 loader.style.display = 'none';
             });
     </script>
-    <script src="../loadMenu.js"></script>
+    
 </body>
 </html>
